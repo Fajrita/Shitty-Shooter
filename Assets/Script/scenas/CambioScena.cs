@@ -21,4 +21,8 @@ public class CambioScena : MonoBehaviour
     {
         SceneManager.LoadScene("Juego");
     }
+    public void CargarMenu()
+    {
+        SceneManager.LoadScene("Inicio");
+    }
 }

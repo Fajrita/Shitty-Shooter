@@ -11,7 +11,7 @@ public class BananaTriger : MonoBehaviour
     CapsuleCollider coll;
 
     private float respawnTime;
-    private float respawnTimeCounter = 5;
+    private float respawnTimeCounter = 15;
     // Start is called before the first frame update
     void Start()
     {

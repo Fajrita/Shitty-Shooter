@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DDB5D62D-7951-9451-5E9C-782F008D858E}</ProjectGuid>
+    <ProjectGuid>{E8968CBE-6D6F-8BB8-761E-F3DEA417C5EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -322,12 +322,6 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -357,15 +351,6 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.GradleProject">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -871,7 +856,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{362015EA-2696-4835-0808-66AE1D7FB6F3}</Project>
+      <Project>{53E7B757-7D94-E95C-B4A2-DF6DC9097E9F}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>
