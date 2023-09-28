@@ -20,7 +20,7 @@ public class ShitPool : MonoBehaviour
     CharacterController controller;
     HUDShit hudShit;
     ShootController potency;
-    Banana banana;
+    Contador contador;
     TextBanana TBanana;
     Movement move;
 
@@ -28,43 +28,26 @@ public class ShitPool : MonoBehaviour
     {
         TBanana = FindObjectOfType<TextBanana>();
         hudShit = FindObjectOfType<HUDShit>();
-        banana = FindObjectOfType<Banana>();
+        contador = FindObjectOfType<Contador>();
         potency = GetComponent<ShootController>();
         controller = GetComponent<CharacterController>();
         move = GetComponent<Movement>();
-        //impulso = new Vector3(0, potency.timeInt, potency.timeInt);
-        //Creamos la array con un tama�o igual al de la variable int primera
         shits = new GameObject[shitPoolSize];
-        //De forma secuencia gracias a un bucle for creamos todas las balas, recordar
-        //que estas comienzan desactivadas con lo cual no se ejecutar� su script y
-        //saldr�n todas disparadas a la vez. Tambi�n fijaos en la posici�n de creaci�n:
-        // el valor -10 de la �x� hace que est�n fuera de la escena por seguridad.
+
         for (int i = 0; i < shitPoolSize; i++)
         {
             shits[i] = Instantiate(shit, new Vector3(-10, -10f, -10f), Quaternion.identity);
             shit.SetActive(false);
         }
-        posicion = new Vector3(0, 3, 0);
-    }
-    private void Update()
-    {
-        //Debug.Log(controller.velocity);
+
+        posicion = new Vector3(0, 5, 0);
     }
     public void ShootBullet()
     {
-        //Cada vez que disparemos el �puntero� del array aumenta en uno para que
-        //en el siguiente disparo se�ale a la siguiente bala del array.
         shitNumber++;
-        //Debug.Log(shitNumber);
-        //Debug.Log(banana.countBanana);
-        //En el caso de que el puntero supere el n�mero de posiciones del array
-        //vuelve a 0 para seguir con el proceso.
-
-        //Ponemos la bala, desactivada a�n, en la posici�n del objeto �GunObject�
         shits[shitNumber].transform.position = transform.position + posicion;
-        //Debug.Log(potency.timePressed);
-        //Debug.Log(potency.timeInt);
         impulso = new Vector3(0, potency.timeInt + adjustShootY, potency.timeInt + adjustShootZ);
+
         if (move.inputKey.z < 0)
         {
             shits[shitNumber].GetComponent<Rigidbody>().velocity = transform.TransformDirection(impulso);
@@ -72,22 +55,20 @@ public class ShitPool : MonoBehaviour
         else
         {
             shits[shitNumber].GetComponent<Rigidbody>().velocity = controller.velocity + (transform.TransformDirection(impulso));
+        }
 
-        }//Debug.Log(shits[shitNumber].GetComponent<Rigidbody>().velocity);
-        //�Activamos la bala!
         shits[shitNumber].SetActive(true);
 
         if (shitNumber == shitPoolSize - 1)
         {
-            banana.countBanana--;
+            contador.banana--;
             TBanana.HudBanana();
             shitNumber = -1;
-            if (banana.countBanana > 0)
+            if (contador.banana > 0)
             {
                 Debug.Log("aqui");
                 hudShit.GetComponent<HUDShit>().Reload();
             }
         }
-
     }
 }

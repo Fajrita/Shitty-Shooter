@@ -6,21 +6,12 @@ using UnityEngine;
 public class KeyEnemies : MonoBehaviour
 {
     GameObject[] allEnemies;
+    Contador keyCount;
 
-    Banana keyCount;
-
-    // Start is called before the first frame update
     void Start()
     {
         allEnemies = GameObject.FindGameObjectsWithTag("Enemigo");
-        keyCount = FindObjectOfType<Banana>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        keyCount = FindObjectOfType<Contador>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -30,15 +21,12 @@ public class KeyEnemies : MonoBehaviour
             {
                 if (!go.activeSelf)
                 {
-                    
                     go.SetActive(true);
-                    
                 }
             }
             keyCount.key = true;
             Debug.Log("key");
             Destroy(gameObject);
         }
-
     }
 }

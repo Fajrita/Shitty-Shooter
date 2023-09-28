@@ -5,34 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class OpenDoor : MonoBehaviour
 {
-     Banana cKey;
-    // Start is called before the first frame update
+     Contador contador;
     void Start()
     {
-        cKey = FindObjectOfType<Banana>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        contador = FindObjectOfType<Contador>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("door");
-           if (!cKey.key)
+           if (!contador.key)
             {
 
             }
 
-            if (cKey.key)
+            if (contador.key)
             {
                 Loadscene();
             }
         }
-
     }
     void Loadscene()
     {

@@ -12,13 +12,9 @@ public class HUDShit : MonoBehaviour
     float NewEspaciado = 0;
     RectTransform rt;
    
-
-    public Banana cBanana;
     void Start()
     {
-      
         rt = hUDShit.GetComponent<RectTransform>();
-        cBanana = FindObjectOfType<Banana>();
         shitPool = FindObjectOfType<ShitPool>();
         hUDShits = new GameObject[shitPool.shitPoolSize];
         for (int i = 0; i < shitPool.shitPoolSize; i++)
@@ -29,22 +25,13 @@ public class HUDShit : MonoBehaviour
             NewEspaciado += espaciado;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Reload()
     {
         for (int i = 0; i < shitPool.shitPoolSize; i++)
         {
             hUDShits[i].SetActive(true);
         }
-
     }
-
     public void ShitLoss()
     {
         for (int i = 0; i < shitPool.shitNumber +2; i++)

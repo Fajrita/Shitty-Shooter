@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7725870006835328340}
   - component: {fileID: 6957870627117053371}
   - component: {fileID: 5180128432405444576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Escenario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
