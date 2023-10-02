@@ -15,13 +15,16 @@ public class Movement : MonoBehaviour
     public float rotSpeed = 10f;
     public LayerMask layer;
     Vector3 move;
+    private bool turn;
+    Quaternion rot;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        
     }
 
-    void Update()
+        void Update()
     {
         inputKey = new Vector3(0, 0, Input.GetAxis("Vertical"));
 
@@ -47,15 +50,46 @@ public class Movement : MonoBehaviour
         //Vector3 move = new Vector3(inputKey.x, 0, inputKey.z);
         //controller.SimpleMove(move * playerSpeed);
 
+        Debug.Log(transform.rotation.y);
+        Debug.Log(rot);
+        Debug.Log(turn);
+        move = new Vector3(inputKey.x, playerVelocity.y, inputKey.z);
+        if (Input.GetKeyDown("x"))
+        {
+            Debug.Log("x");
+            turn = true;
 
-       move = new Vector3(inputKey.x, playerVelocity.y, inputKey.z);
+        }
         
     }
 
     public void FixedUpdate()
     {
         controller.Move(transform.TransformDirection(move * playerSpeed * Time.fixedDeltaTime));
-        controller.transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * rotSpeed, 0f));
+
+        if (turn)
+        {
+                Debug.Log("rot");
+
+                FastTurn();
+           
+
+        }
+        else controller.transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * rotSpeed, 0f));
+
+    }
+
+    void FastTurn()
+    {
+        rot = Quaternion.Euler(0, controller.transform.rotation.y + 180, 0);
+        controller.transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * 0.1f);
+        if (transform.rotation.y == rot.y)
+        {
+            rot = Quaternion.Euler(0, controller.transform.rotation.y + 180, 0);
+            turn = false;
+        }
+        //controller.transform.rotation = transform.rotation;
+
     }
 
     bool ComprobacionTecho()
