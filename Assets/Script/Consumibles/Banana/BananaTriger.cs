@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BananaTriger : MonoBehaviour
 {
-    Contador contador;
+    
     HUDShit hudShit;
     TextBanana TBanana;
     SpriteRenderer render;
@@ -15,7 +15,7 @@ public class BananaTriger : MonoBehaviour
 
     void Start()
     {
-        contador = FindObjectOfType<Contador>();
+
         hudShit = FindObjectOfType<HUDShit>();
         TBanana = FindObjectOfType<TextBanana>();
         render = GetComponent<SpriteRenderer>();
@@ -36,21 +36,17 @@ public class BananaTriger : MonoBehaviour
             respawnTime = respawnTimeCounter;
         }
     }
-    private void OnDisable()
-    {
-        Debug.Log("disable");
-    }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
         if (other.gameObject.tag == "Player")
         {
-            contador.banana++;
+            Contador.banana++;
             TBanana.HudBanana();
             render.enabled = false;
             coll.enabled = false;
             
-            if (contador.banana == 1)
+            if (Contador.banana == 1)
             {
                 hudShit.GetComponent<HUDShit>().Reload();
             }

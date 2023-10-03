@@ -6,12 +6,10 @@ using UnityEngine;
 public class KeyEnemies : MonoBehaviour
 {
     GameObject[] allEnemies;
-    Contador keyCount;
 
     void Start()
     {
         allEnemies = GameObject.FindGameObjectsWithTag("Enemigo");
-        keyCount = FindObjectOfType<Contador>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +22,7 @@ public class KeyEnemies : MonoBehaviour
                     go.SetActive(true);
                 }
             }
-            keyCount.key = true;
+            Contador.key = true;
             Debug.Log("key");
             Destroy(gameObject);
         }

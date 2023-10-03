@@ -16,12 +16,12 @@ public class Movement : MonoBehaviour
     public LayerMask layer;
     Vector3 move;
     private bool turn;
-    Quaternion rot;
+    Vector3 rot;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
+
     }
 
         void Update()
@@ -50,17 +50,15 @@ public class Movement : MonoBehaviour
         //Vector3 move = new Vector3(inputKey.x, 0, inputKey.z);
         //controller.SimpleMove(move * playerSpeed);
 
-        Debug.Log(transform.rotation.y);
-        Debug.Log(rot);
-        Debug.Log(turn);
         move = new Vector3(inputKey.x, playerVelocity.y, inputKey.z);
         if (Input.GetKeyDown("x"))
         {
             Debug.Log("x");
-            turn = true;
-
+            rot.y = controller.transform.eulerAngles.y;
+            turn = true; 
         }
-        
+        if (Input.GetKeyDown("z")) { turn = false; }
+
     }
 
     public void FixedUpdate()
@@ -69,27 +67,31 @@ public class Movement : MonoBehaviour
 
         if (turn)
         {
-                Debug.Log("rot");
-
-                FastTurn();
-           
-
+               FastTurn();
         }
         else controller.transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * rotSpeed, 0f));
-
     }
 
     void FastTurn()
     {
-        rot = Quaternion.Euler(0, controller.transform.rotation.y + 180, 0);
-        controller.transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * 0.1f);
-        if (transform.rotation.y == rot.y)
+        if (rot.y < 180f)
         {
-            rot = Quaternion.Euler(0, controller.transform.rotation.y + 180, 0);
-            turn = false;
+            controller.transform.Rotate(new Vector3(0, 180 * 2, 0f)* Time.fixedDeltaTime, Space.Self);
+            if (transform.rotation.eulerAngles.y >= rot.y + 179.9)
+            {
+                Debug.Log("1");
+                turn = false;
+            }
         }
-        //controller.transform.rotation = transform.rotation;
-
+        if (rot.y >= 180f)
+        {
+            controller.transform.Rotate(new Vector3(0, -180 * 2, 0f) * Time.fixedDeltaTime, Space.Self);
+            if (transform.rotation.eulerAngles.y <= rot.y - 179.9)
+            {
+                Debug.Log("2");
+                turn = false;
+            }
+        }
     }
 
     bool ComprobacionTecho()
