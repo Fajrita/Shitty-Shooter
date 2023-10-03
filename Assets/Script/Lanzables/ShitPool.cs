@@ -20,7 +20,6 @@ public class ShitPool : MonoBehaviour
     CharacterController controller;
     HUDShit hudShit;
     ShootController potency;
-    Contador contador;
     TextBanana TBanana;
     Movement move;
 
@@ -28,7 +27,6 @@ public class ShitPool : MonoBehaviour
     {
         TBanana = FindObjectOfType<TextBanana>();
         hudShit = FindObjectOfType<HUDShit>();
-        contador = FindObjectOfType<Contador>();
         potency = GetComponent<ShootController>();
         controller = GetComponent<CharacterController>();
         move = GetComponent<Movement>();
@@ -61,10 +59,10 @@ public class ShitPool : MonoBehaviour
 
         if (shitNumber == shitPoolSize - 1)
         {
-            contador.banana--;
+            Contador.banana--;
             TBanana.HudBanana();
             shitNumber = -1;
-            if (contador.banana > 0)
+            if (Contador.banana > 0)
             {
                 Debug.Log("aqui");
                 hudShit.GetComponent<HUDShit>().Reload();

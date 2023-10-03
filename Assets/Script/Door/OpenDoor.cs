@@ -5,22 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class OpenDoor : MonoBehaviour
 {
-     Contador contador;
+    Animator anim;
     void Start()
     {
-        contador = FindObjectOfType<Contador>();
+        anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("door");
-           if (!contador.key)
+           if (!Contador.key)
             {
-
+                anim.SetTrigger("Try");
             }
 
-            if (contador.key)
+            if (Contador.key)
             {
                 Loadscene();
             }
@@ -28,6 +28,6 @@ public class OpenDoor : MonoBehaviour
     }
     void Loadscene()
     {
-        SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene("Win");
     }
 }

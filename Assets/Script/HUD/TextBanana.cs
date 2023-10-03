@@ -8,13 +8,11 @@ using System;
 
 public class TextBanana : MonoBehaviour
 {
-    Contador contador;
     int intBanana;
     string stringBanana;
     TextMeshProUGUI text;
     void Start()
     {
-        contador = FindObjectOfType<Contador>();
         text = GetComponent<TextMeshProUGUI>();
         text.text = "0";
     }
@@ -27,7 +25,7 @@ public class TextBanana : MonoBehaviour
     }
     public void HudBanana()
     {
-        intBanana = contador.banana;
+        intBanana = Contador.banana;
         stringBanana = Convert.ToString(intBanana);
         text.text = stringBanana;
 

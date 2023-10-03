@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Contador : MonoBehaviour
+
+public static class Contador 
 {
-    public int banana;
-    public bool key;
+    public static int banana;
+    public static bool key;
 
 
 }

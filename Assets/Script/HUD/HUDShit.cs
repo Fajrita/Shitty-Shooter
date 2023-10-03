@@ -19,7 +19,7 @@ public class HUDShit : MonoBehaviour
         hUDShits = new GameObject[shitPool.shitPoolSize];
         for (int i = 0; i < shitPool.shitPoolSize; i++)
         {
-            rt.anchoredPosition = new Vector2(-500 - NewEspaciado, -79);
+            rt.anchoredPosition = new Vector2(-480 - NewEspaciado, -163);
             hUDShits[i] = Instantiate(hUDShit, transform, false);     
             hUDShit.SetActive(false);
             NewEspaciado += espaciado;
