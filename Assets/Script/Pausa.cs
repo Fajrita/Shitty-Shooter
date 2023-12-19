@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class Pausa : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    GameObject pauseHud;
     void Start()
     {
-        
+        Time.timeScale = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("p"))
+        {
+            TogglePause();
+        }
+    }
+    void TogglePause()
+    {
+        if (Time.timeScale > 0f)
+        {
+            Cursor.visible = true;
+            Time.timeScale = 0f;
+            pauseHud.SetActive(true);
+            AudioListener.pause = true;
+        }
+        else if (Time.timeScale == 0f)
+        {
+            Cursor.visible = false;
+            Time.timeScale = 1f;
+            pauseHud.SetActive(false);
+            AudioListener.pause = false;
+        }
     }
 }

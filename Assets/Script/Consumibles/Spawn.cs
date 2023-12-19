@@ -11,7 +11,14 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         i = Random.Range(0, spawn.Length);
+        if (i == 1 || i == 2)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
         tran = spawn[i].transform;
-        transform.position = tran.position;        
+        Debug.Log(tran.transform.rotation.eulerAngles);
+        transform.position = tran.position;
+
+
     }
 }

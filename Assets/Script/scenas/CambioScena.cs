@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CambioScena : MonoBehaviour
 {
-    // Start is called before the first frame update
+    IEnumerator corrutine;
     void Start()
     {
         
@@ -19,10 +19,31 @@ public class CambioScena : MonoBehaviour
 
     public void CargarJuego()
     {
-        SceneManager.LoadScene("Juego");
+        corrutine = CambioJuego();
+        StartCoroutine(corrutine);
+        
     }
     public void CargarMenu()
     {
+
+        corrutine = CambioMenu();
+        StartCoroutine(corrutine);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    IEnumerator CambioJuego()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        SceneManager.LoadScene("Juego");
+    }
+
+    IEnumerator CambioMenu()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
         SceneManager.LoadScene("Inicio");
     }
 }

@@ -15,6 +15,7 @@ public class BananaTriger : MonoBehaviour
 
     void Start()
     {
+        Contador.banana = 0;
 
         hudShit = FindObjectOfType<HUDShit>();
         TBanana = FindObjectOfType<TextBanana>();
@@ -41,10 +42,12 @@ public class BananaTriger : MonoBehaviour
         Debug.Log("Enter");
         if (other.gameObject.tag == "Player")
         {
+            gameObject.GetComponent<AudioSource>().Play();
             Contador.banana++;
             TBanana.HudBanana();
             render.enabled = false;
             coll.enabled = false;
+            
             
             if (Contador.banana == 1)
             {

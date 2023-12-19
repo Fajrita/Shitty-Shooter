@@ -47,6 +47,7 @@ public class Death : MonoBehaviour
         }
         if (color.a >= 1)
         {
+            Cursor.visible = true;
             Loadscene();
         }
     }
@@ -56,7 +57,7 @@ public class Death : MonoBehaviour
     {
         RaycastHit Datos;
         // Cogemos la altura del personaje
-        float tamaño = GetComponent<Renderer>().bounds.size.x;
+        float tamaño = GetComponent<CharacterController>().bounds.size.x;
         // posicion inicial, radio de la pelota, dirección, datos, distancia
        
         if (Physics.SphereCast(transform.position, tamaño/4, Vector3.left, out Datos, tamaño / 2 + 0.1f, layer))

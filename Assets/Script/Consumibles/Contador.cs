@@ -9,5 +9,4 @@ public static class Contador
     public static int banana;
     public static bool key;
 
-
 }

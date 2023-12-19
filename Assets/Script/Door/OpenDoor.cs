@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 public class OpenDoor : MonoBehaviour
 {
     Animator anim;
+    new AudioSource audio;
+    [SerializeField]
+    AudioClip closed;
+    [SerializeField]
+    AudioClip open;
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter(Collider other)
@@ -17,17 +23,23 @@ public class OpenDoor : MonoBehaviour
             Debug.Log("door");
            if (!Contador.key)
             {
+                audio.clip = closed;
+                audio.Play();
                 anim.SetTrigger("Try");
             }
 
             if (Contador.key)
             {
-                Loadscene();
+                audio.clip= open;
+                audio.Play();
+                Cursor.visible = true;
+                StartCoroutine(Win());
             }
         }
     }
-    void Loadscene()
+    IEnumerator Win()
     {
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene("Win");
     }
 }

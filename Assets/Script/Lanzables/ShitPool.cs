@@ -5,13 +5,11 @@ using UnityEngine.UIElements;
 
 public class ShitPool : MonoBehaviour
 {
-    public int shitPoolSize = 10; //Tama�o de la array de objetos a reciclar
-                                  //aconsejable los posibles sin reusar uno que no est� desactivado
-    public GameObject shit; //Referencia temporal para gesti�n del array con objetos prefabs
-    private GameObject[] shits; //Array de objetos a reciclar
-    public int shitNumber = -1; //N�mero con la posici�n del array que toca activar y gestionar
-
-    
+    public int shitPoolSize = 10;
+    public GameObject shit;
+    private GameObject[] shits;
+    public int shitNumber = -1;
+   
     Vector3 posicion;
     Vector3 impulso;
     public int adjustShootY = 5;
@@ -22,9 +20,13 @@ public class ShitPool : MonoBehaviour
     ShootController potency;
     TextBanana TBanana;
     Movement move;
+    Transform shooter;
+    new AudioSource audio;
 
     void Start()
     {
+        shooter = gameObject.transform.Find("Shooter");
+        audio = GetComponent<AudioSource>();
         TBanana = FindObjectOfType<TextBanana>();
         hudShit = FindObjectOfType<HUDShit>();
         potency = GetComponent<ShootController>();
@@ -38,12 +40,13 @@ public class ShitPool : MonoBehaviour
             shit.SetActive(false);
         }
 
-        posicion = new Vector3(0, 5, 0);
+        posicion = new Vector3(0, 5, 4) ;
     }
     public void ShootBullet()
     {
+        audio.Play();
         shitNumber++;
-        shits[shitNumber].transform.position = transform.position + posicion;
+        shits[shitNumber].transform.position = shooter.position;
         impulso = new Vector3(0, potency.timeInt + adjustShootY, potency.timeInt + adjustShootZ);
 
         if (move.inputKey.z < 0)
@@ -64,7 +67,6 @@ public class ShitPool : MonoBehaviour
             shitNumber = -1;
             if (Contador.banana > 0)
             {
-                Debug.Log("aqui");
                 hudShit.GetComponent<HUDShit>().Reload();
             }
         }

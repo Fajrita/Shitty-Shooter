@@ -33,12 +33,12 @@ public class ShootController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("g") && Contador.banana > 0 && lanzado == false)
+        if (Input.GetKeyDown("z") && Contador.banana > 0 && lanzado == false)
         {
             timePressed = 0;
             lanzado = true;
         }
-        if (Input.GetKey("g") && Contador.banana > 0 && lanzado == true)
+        if (Input.GetKey("z") && Contador.banana > 0 && lanzado == true)
         {
             timePressed += Time.deltaTime;
             ancho += 2.4f;
@@ -62,7 +62,7 @@ public class ShootController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp("g") && Contador.banana > 0 && lanzado == true)
+        if (Input.GetKeyUp("z") && Contador.banana > 0 && lanzado == true)
         {
             lanzado = false;
             ancho = 0;
