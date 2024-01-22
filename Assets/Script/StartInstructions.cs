@@ -5,11 +5,13 @@ using UnityEngine;
 public class StartInstructions : MonoBehaviour
 {
     public Movement pMov;
+    public ShootController pshoot;
     public GameObject startPanel;
     void Start()
     {
         pMov.enabled = false;
         Cursor.visible = false;
+        AudioListener.pause = false;
     }
 
     // Update is called once per frame
@@ -27,5 +29,6 @@ public class StartInstructions : MonoBehaviour
         startPanel.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         pMov.enabled = true;
+        pshoot.enabled = true;
     }
 }

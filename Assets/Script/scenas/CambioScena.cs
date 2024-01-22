@@ -44,6 +44,8 @@ public class CambioScena : MonoBehaviour
     IEnumerator CambioMenu()
     {
         yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
         SceneManager.LoadScene("Inicio");
     }
 }

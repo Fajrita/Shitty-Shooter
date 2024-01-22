@@ -12,6 +12,7 @@ public class Death : MonoBehaviour
     Movement movement;
     bool choque;
     GameObject surface;
+    ShootController shootController;
    
 
     private void Start()
@@ -20,6 +21,7 @@ public class Death : MonoBehaviour
         
         color = image.color;
         color.a = 0f;
+        shootController = FindObjectOfType<ShootController>();
         movement = FindObjectOfType<Movement>();
         surface = GameObject.FindGameObjectWithTag("Nav");
 
@@ -34,6 +36,7 @@ public class Death : MonoBehaviour
             Debug.Log("choque");
            
             Destroy(surface);
+            shootController.enabled = false;
             movement.enabled = false;
             choque = true;
          
@@ -41,15 +44,23 @@ public class Death : MonoBehaviour
         }
         if (choque)
         {
-            color.a += 0.01f;
+            shootController.enabled = false;
+            movement.enabled = false;
+            ChangeColor();
             image.color = color;
-            //Debug.Log(color.a);
+
         }
         if (color.a >= 1)
         {
             Cursor.visible = true;
             Loadscene();
         }
+    }
+
+    void ChangeColor()
+    {
+        float t = Time.deltaTime;
+        color.a += t;
     }
   
 
